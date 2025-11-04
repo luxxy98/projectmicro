@@ -17,6 +17,22 @@
                 href="{{ route('admin.sdm.sdm.index') }}">
                 <span class="menu-title">SDM</span>
             </a>
+            @php
+                $referensiActive = request()->routeIs('admin.ref.jenjang-pendidikan.*');
+            @endphp
+            <div data-kt-menu-trigger="click"
+                 class="menu-item menu-accordion {{ $referensiActive ? 'here show' : '' }}">
+                <span class="menu-link">
+                    <span class="menu-title">Referensi</span>
+                    <span class="menu-arrow"></span>
+                </span>
+                <div class="menu-sub menu-sub-accordion menu-active-bg">
+                    <a class="menu-link {{ request()->routeIs('admin.ref.jenjang-pendidikan.*') ? 'active' : '' }}"
+                       href="{{ route('admin.ref.jenjang-pendidikan.index') }}">
+                        <span class="menu-title px-4">Jenjang Pendidikan</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

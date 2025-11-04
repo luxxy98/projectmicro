@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Person\PersonController;
+use App\Http\Controllers\Admin\Ref\RefJenjangPendidikanController;
 use App\Http\Controllers\Admin\Sdm\PersonSdmController;
 use App\Http\Controllers\Content\PortalController;
 use Illuminate\Support\Facades\Route;
@@ -37,4 +38,19 @@ Route::prefix('sdm')->group(function () {
         ->name('sdm.sdm.histori');
     Route::get('find/by/nik/{id}', [PersonSdmController::class, 'find_by_nik'])
         ->name('sdm.sdm.find_by_nik');
+});
+
+Route::prefix('ref')->group(function () {
+    Route::prefix('jenjang-pendidikan')->group(function () {
+        Route::get('/', [RefJenjangPendidikanController::class, 'index'])
+            ->name('ref.jenjang-pendidikan.index');
+        Route::get('data', [RefJenjangPendidikanController::class, 'list'])
+            ->name('ref.jenjang-pendidikan.list');
+        Route::get('show/{id}', [RefJenjangPendidikanController::class, 'show'])
+            ->name('ref.jenjang-pendidikan.show');
+        Route::post('/store', [RefJenjangPendidikanController::class, 'store'])
+            ->name('ref.jenjang-pendidikan.store');
+        Route::post('update/{id}', [RefJenjangPendidikanController::class, 'update'])
+            ->name('ref.jenjang-pendidikan.update');
+    });
 });
