@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 10, 2025 at 11:37 PM
--- Server version: 11.7.2-MariaDB
--- PHP Version: 8.3.17
+-- Generation Time: Nov 04, 2025 at 09:12 AM
+-- Server version: 8.0.40
+-- PHP Version: 8.3.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,11 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `id_admin` char(7) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `role` enum('developer','admin') NOT NULL DEFAULT 'admin'
+  `id_admin` char(7) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` enum('developer','admin') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'admin'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -45,28 +45,257 @@ INSERT INTO `admin` (`id_admin`, `nama`, `email`, `password`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `master_jabatan`
+--
+
+CREATE TABLE `master_jabatan` (
+  `id_jabatan` smallint UNSIGNED NOT NULL,
+  `id_unit` smallint UNSIGNED NOT NULL,
+  `id_periode` smallint UNSIGNED NOT NULL,
+  `id_eselon` tinyint UNSIGNED NOT NULL,
+  `jabatan` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `master_jabatan`
+--
+
+INSERT INTO `master_jabatan` (`id_jabatan`, `id_unit`, `id_periode`, `id_eselon`, `jabatan`) VALUES
+(1, 1, 1, 1, 'Rektor'),
+(2, 1, 1, 1, 'Wakil Rektor Bidang Akademik dan SDM'),
+(3, 1, 1, 1, 'Wakil Rektor Bidang Keuangan, Aset dan Sarana Prasarana'),
+(4, 1, 1, 1, 'Wakil Rektor Bidang Data, Sistem Informasi, Kemahasiswaan, Riset dan Alumni'),
+(5, 1, 1, 5, 'Wakil Rektor Bidang Hubungan Masyarakat, Kerjasama dan Inovasi'),
+(6, 2, 1, 5, 'Kepala KSP'),
+(7, 2, 1, 5, 'Anggota KSP'),
+(8, 2, 1, 5, 'Kepala Bagian Hubungan Masyarakat, Kerjasama dan Protokoler'),
+(9, 2, 1, 5, 'Kepala Bagian Urusan Internasional'),
+(10, 2, 1, 5, 'Staf Rektorat'),
+(11, 2, 1, 5, 'Staf Humas dan Kerjasama'),
+(12, 3, 1, 5, 'Kepala BAUAK'),
+(13, 3, 1, 5, 'Kepala Bagian Sarana dan Kerumah Tanggaan'),
+(14, 3, 1, 5, 'Ka. Sub Bagian Sarana dan Prasarana'),
+(15, 3, 1, 5, 'Ka. Sub Bagian Kerumahtanggaan'),
+(16, 3, 1, 5, 'Sopir Dinas'),
+(17, 3, 1, 5, 'Staf Administrasi'),
+(18, 3, 1, 5, 'Maintenance Sarana Prasarana'),
+(19, 3, 1, 5, 'Speedboat'),
+(20, 3, 1, 5, 'Staf Pelayanan Wisma'),
+(21, 3, 1, 5, 'Kepala Bagian Akademik dan Kemahasiswaan'),
+(22, 3, 1, 5, 'Ka. Sub Bagian Administrasi Kemahasiswaan'),
+(23, 3, 1, 5, 'Ka. Sub Bagian Organisasi Kemahasiswaan & Organisasi serta pendataan Alumni'),
+(24, 3, 1, 5, 'Kepala Bagian Administrasi Umum'),
+(25, 3, 1, 5, 'Staf Administrasi Umum'),
+(26, 3, 1, 5, 'Kepala Bagian Kepegawaian'),
+(27, 3, 1, 5, 'Staf Bagian Pengembangan Tenaga Kependidikan'),
+(28, 3, 1, 5, 'Staf Bagian Pengembangan Tenaga Pendidik'),
+(29, 3, 1, 5, 'Tim Anggota Penliai Angka Kredit (PAK)'),
+(30, 3, 1, 5, 'Kepala Bagian Perencanaan dan Keuangan'),
+(31, 3, 1, 5, 'Kepala Sub Bagian Perbendaharaan'),
+(32, 3, 1, 5, 'Kepala Sub Bagian Akuntansi dan Pelaporan'),
+(33, 3, 1, 5, 'Kepala Bidang BPLK'),
+(34, 3, 1, 5, 'Kepala Sub Bagian Ketertiban dan Kebersihan'),
+(35, 3, 1, 5, 'Anggota Keamanan Kampus'),
+(36, 3, 1, 5, 'Ketua Koordinator Santri Patriot'),
+(37, 3, 1, 5, 'Anggota Koordinator Santri Patriot'),
+(38, 3, 1, 5, 'Danru Keamanan Kampus'),
+(39, 4, 1, 5, 'Dekan Fakultas Agama Islam'),
+(40, 4, 1, 5, 'Ketua Prodi IQT'),
+(41, 4, 1, 5, 'Ketua Prodi ES'),
+(42, 4, 1, 5, 'Ketua Prodi MPI'),
+(43, 4, 1, 5, 'Ketua Prodi PAI'),
+(44, 4, 1, 5, 'Ketua Prodi PS'),
+(45, 4, 1, 5, 'Ketua Prodi PBA & Anggota Bidang Urusan Internasional'),
+(46, 4, 1, 5, 'Kepala Tata Usaha'),
+(47, 4, 1, 5, 'Ketua Prodi PIAUD dan PGMI'),
+(48, 4, 1, 5, 'Ketua Prodi AS'),
+(49, 4, 1, 5, 'Ketua Prodi KPI'),
+(50, 4, 1, 5, 'Sekretaris Prodi Fakultas Agama Islam'),
+(51, 4, 1, 5, 'Staf Bagian Administrasi'),
+(52, 5, 1, 5, 'Dekan Fakultas Teknik'),
+(53, 5, 1, 5, 'Ketua Prodi Teknologi Informasi'),
+(54, 5, 1, 5, 'Kepala Tata Usaha'),
+(55, 5, 1, 5, 'Ketua Prodi Elektro'),
+(56, 5, 1, 5, 'Ketua Prodi Informatika'),
+(57, 5, 1, 5, 'Kepala Laboratorium'),
+(58, 5, 1, 5, 'Sekretaris Prodi Fakultas Teknik'),
+(59, 5, 1, 5, 'Staf Bagian Administrasi'),
+(60, 6, 1, 5, 'Dekan Fakultas Kesehatan'),
+(61, 6, 1, 5, 'Wakil Dekan Fakultas Kesehatan'),
+(62, 6, 1, 5, 'Kepala Tata Usaha'),
+(63, 6, 1, 5, 'Ketua Prodi NERS'),
+(64, 6, 1, 5, 'Ketua Prodi Kebidanan'),
+(65, 6, 1, 5, 'Ketua Prodi Keperawatan'),
+(66, 6, 1, 5, 'Laboratorium'),
+(67, 6, 1, 5, 'Sekretaris Prodi Fakultas Kesehatan'),
+(68, 6, 1, 5, 'Staf Bagian Administrasi Umum dan Keuangan'),
+(69, 6, 1, 5, 'Staf Administrasi'),
+(70, 7, 1, 5, 'Dekan Fakultas Sosial dan Humaniora'),
+(71, 7, 1, 5, 'Ketua Prodi Ekonomi'),
+(72, 7, 1, 5, 'Ketua Prodi Pendidikan Matematika'),
+(73, 7, 1, 5, 'Ketua Prodi Hukum'),
+(74, 7, 1, 5, 'Kepala Tata Usaha'),
+(75, 7, 1, 5, 'Ketua Prodi Pendidikan Bahasa Inggris & Anggota Bidang Urusan Internasional'),
+(76, 7, 1, 5, 'Staf Bagian Administrasi'),
+(77, 8, 1, 5, 'Direktur Pascasarjana'),
+(78, 8, 1, 5, 'Ketua Prodi MPI'),
+(79, 8, 1, 5, 'Ketua Prodi PAI'),
+(80, 8, 1, 5, 'Kepala Tata Usaha'),
+(81, 8, 1, 5, 'Staf Bagian Administrasi Umum dan Keuangan'),
+(82, 8, 1, 5, 'Staf Bagian Administrasi Akademik dan Kemahasiswaan'),
+(83, 9, 1, 5, 'Kepala Lembaga LSPK'),
+(84, 9, 1, 5, 'Ka. Bidang Sertifikasi Profesi'),
+(85, 9, 1, 5, 'Ka. Sub Bidang Sertifikasi Keagamaan'),
+(86, 9, 1, 5, 'Staf Administrasi LSPK'),
+(87, 12, 1, 5, 'Kepala LP3M'),
+(88, 12, 1, 5, 'Kabid. Penerbitan, Publikasi Ilmiah dan Automasi'),
+(89, 12, 1, 5, 'Kabid. Penelitian dan Pengabdian Kepada Masyarakat'),
+(90, 12, 1, 5, 'Staf Administrasi'),
+(91, 10, 1, 5, 'Kepala Pembinaan Pondok Mahasiswa (Pomas)'),
+(92, 10, 1, 5, 'Anggota Pembina'),
+(93, 11, 1, 5, 'Kepala PDSI'),
+(94, 11, 1, 5, 'Kepala Sub Bagian PDDIKTI'),
+(95, 11, 1, 5, 'Staf Bidang Pengembangan Sistem Informasi'),
+(96, 11, 1, 5, 'Staf Bidang Infrastruktur dan KeamananTeknologi Informasi'),
+(97, 13, 1, 5, 'Kepala LAE'),
+(98, 13, 1, 5, 'Kepala Sub Bagian Instrumen'),
+(99, 13, 1, 5, 'Kepala Sub Bagian Dokumen'),
+(100, 13, 1, 5, 'Staf Administrasi'),
+(101, 14, 1, 5, 'Kepala LPPM'),
+(102, 14, 1, 5, 'Kabid Pengawasan'),
+(103, 14, 1, 5, 'Ka. Bidang Penjaminan Mutu'),
+(104, 14, 1, 5, 'Anggota Gugus Kendali Mutu Fakultas'),
+(105, 14, 1, 5, 'Staf Administrasi'),
+(106, 15, 1, 5, 'Kepala Lembaga LPIP'),
+(107, 15, 1, 5, 'Kepala Bidang Inovasi Pembelajaran LPIP'),
+(108, 15, 1, 5, 'Kepala UPT Perpustakaan LPIP'),
+(109, 15, 1, 5, 'Pustakawan LPIP'),
+(110, 15, 1, 5, 'Staf Administrasi Perpustakaan LPIP'),
+(111, 15, 1, 5, 'Staf Bidang Pengembangan Kurikulum LPIP'),
+(112, 15, 1, 5, 'Staf Administrasi'),
+(113, 16, 1, 5, 'Kepala Pusat'),
+(114, 16, 1, 5, 'Kepala Pusat Bahasa'),
+(115, 16, 1, 5, 'Staf Administrasi'),
+(116, 16, 1, 5, 'Kepala Pusat Bisnis'),
+(117, 16, 1, 5, 'Staf UNUJA Store'),
+(118, 16, 1, 5, 'Staf Pusat Bisnis dan Pusat Layanan Masyarakat'),
+(119, 16, 1, 5, 'Kepala Pusat Layanan Masyarakat'),
+(120, 17, 1, 5, 'Staf Rumah Jurnal');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `master_periode`
+--
+
+CREATE TABLE `master_periode` (
+  `id_periode` smallint UNSIGNED NOT NULL,
+  `periode` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tanggal_awal` date NOT NULL,
+  `tanggal_akhir` date NOT NULL,
+  `status` enum('active','block') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `master_periode`
+--
+
+INSERT INTO `master_periode` (`id_periode`, `periode`, `tanggal_awal`, `tanggal_akhir`, `status`) VALUES
+(1, 'Periode 2023 -2025', '2023-01-01', '2025-12-31', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `master_unit`
+--
+
+CREATE TABLE `master_unit` (
+  `id_unit` smallint UNSIGNED NOT NULL,
+  `unit` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `singkatan` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data for table `master_unit`
+--
+
+INSERT INTO `master_unit` (`id_unit`, `unit`, `singkatan`) VALUES
+(1, 'REKTORAT', 'REKTORAT'),
+(2, 'Kantor Staf Pimpinan', 'KSP'),
+(3, 'BIRO ADMINISTRASI UMUM, AKADEMIK & KEUANGAN', 'BAUAK'),
+(4, 'FAKULTAS AGAMA ISLAM', 'FAI'),
+(5, 'FAKULTAS TEKNIK', 'FT'),
+(6, 'FAKULTAS KESEHATAN', 'FKES'),
+(7, 'FAKULTAS SOSIAL DAN HUMANIORA', 'FSOSHUM'),
+(8, 'PROGRAM PASCASARJANA', 'PASCA'),
+(9, 'Lembaga Sertifikasi Profesi dan Kompetensi\r\n', 'LSPK'),
+(10, 'Pondok Mahasiswa', 'POMAS'),
+(11, 'Lembaga Pusat Data dan Sistem Informasi', 'PDSI'),
+(12, 'Lembaga Penerbitan, Penelitian, dan Pengabdian Masyarakat', 'LP3M'),
+(13, 'Lembaga Akreditasi Eksternal', 'LAE'),
+(14, 'Lembaga Pengawasan dan Penjaminan Mutu', 'LPPM'),
+(15, 'Lembaga Pengembangan dan Inovasi Pembelajaran', 'LPIP'),
+(16, 'Lembaga Pusat', 'PUSAT'),
+(17, 'Rumah Jurnal', 'Jurnal');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `person`
 --
 
 CREATE TABLE `person` (
-  `id_person` smallint(5) UNSIGNED NOT NULL,
-  `uuid_person` varchar(36) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `jk` enum('L','P') NOT NULL,
-  `tempat_lahir` varchar(30) NOT NULL,
+  `id_person` smallint UNSIGNED NOT NULL,
+  `uuid_person` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jk` enum('L','P') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tempat_lahir` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tanggal_lahir` date NOT NULL,
-  `kewarganegaraan` varchar(30) DEFAULT NULL,
-  `golongan_darah` enum('A','B','AB','O') DEFAULT NULL,
-  `nik` varchar(16) DEFAULT NULL,
-  `nomor_kk` varchar(16) DEFAULT NULL,
-  `alamat` varchar(100) DEFAULT NULL,
-  `rt` char(3) DEFAULT NULL,
-  `rw` char(3) DEFAULT NULL,
-  `id_desa` char(10) DEFAULT NULL,
-  `npwp` varchar(30) DEFAULT NULL,
-  `nomor_hp` varchar(16) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `foto` varchar(36) DEFAULT NULL COMMENT 'path file foto'
+  `kewarganegaraan` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `golongan_darah` enum('A','B','AB','O') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nik` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nomor_kk` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `alamat` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rt` char(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rw` char(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_desa` char(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `npwp` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nomor_hp` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `foto` varchar(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'path file foto'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_asuransi`
+--
+
+CREATE TABLE `person_asuransi` (
+  `id_person_asuransi` smallint UNSIGNED NOT NULL,
+  `id_jenis_asuransi` smallint UNSIGNED NOT NULL,
+  `id_person` smallint UNSIGNED NOT NULL,
+  `nomor_registrasi` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kartu_anggota` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_aktif` enum('Aktif','Nonaktif','Berakhir') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Aktif',
+  `tanggal_mulai` date DEFAULT NULL,
+  `tanggal_berakhir` date DEFAULT NULL,
+  `keterangan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_sdm`
+--
+
+CREATE TABLE `person_sdm` (
+  `id_sdm` smallint UNSIGNED NOT NULL,
+  `id_person` smallint UNSIGNED NOT NULL,
+  `nomor_karpeg` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nomor_sk` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tmt` date DEFAULT NULL,
+  `tmt_pensiun` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -76,9 +305,9 @@ CREATE TABLE `person` (
 --
 
 CREATE TABLE `ref_almt_desa` (
-  `id_desa` char(10) NOT NULL,
-  `desa` varchar(50) NOT NULL,
-  `id_kecamatan` char(6) NOT NULL
+  `id_desa` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `desa` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_kecamatan` char(6) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
@@ -82661,9 +82890,9 @@ INSERT INTO `ref_almt_desa` (`id_desa`, `desa`, `id_kecamatan`) VALUES
 --
 
 CREATE TABLE `ref_almt_kabupaten` (
-  `id_kabupaten` char(4) NOT NULL,
-  `kabupaten` varchar(50) NOT NULL,
-  `id_provinsi` char(2) NOT NULL
+  `id_kabupaten` char(4) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kabupaten` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_provinsi` char(2) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
@@ -83193,9 +83422,9 @@ INSERT INTO `ref_almt_kabupaten` (`id_kabupaten`, `kabupaten`, `id_provinsi`) VA
 --
 
 CREATE TABLE `ref_almt_kecamatan` (
-  `id_kecamatan` char(6) NOT NULL,
-  `kecamatan` varchar(50) NOT NULL,
-  `id_kabupaten` char(4) NOT NULL
+  `id_kecamatan` char(6) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kecamatan` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_kabupaten` char(4) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
@@ -90309,8 +90538,8 @@ INSERT INTO `ref_almt_kecamatan` (`id_kecamatan`, `kecamatan`, `id_kabupaten`) V
 --
 
 CREATE TABLE `ref_almt_provinsi` (
-  `id_provinsi` char(2) NOT NULL,
-  `provinsi` varchar(50) NOT NULL
+  `id_provinsi` char(2) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `provinsi` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
@@ -90353,6 +90582,178 @@ INSERT INTO `ref_almt_provinsi` (`id_provinsi`, `provinsi`) VALUES
 ('91', 'Papua Barat'),
 ('92', 'Papua');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ref_eselon`
+--
+
+CREATE TABLE `ref_eselon` (
+  `id_eselon` tinyint UNSIGNED NOT NULL,
+  `eselon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data for table `ref_eselon`
+--
+
+INSERT INTO `ref_eselon` (`id_eselon`, `eselon`) VALUES
+(1, 'Pimpinan'),
+(2, 'Eselon I'),
+(3, 'Eselon II'),
+(4, 'Eselon III'),
+(5, 'Non-Eselon');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ref_hubungan_keluarga`
+--
+
+CREATE TABLE `ref_hubungan_keluarga` (
+  `id_hubungan_keluarga` smallint UNSIGNED NOT NULL,
+  `hubungan_keluarga` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jk` enum('L','P') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data for table `ref_hubungan_keluarga`
+--
+
+INSERT INTO `ref_hubungan_keluarga` (`id_hubungan_keluarga`, `hubungan_keluarga`, `jk`) VALUES
+(1, 'Suami', 'L'),
+(2, 'Istri', 'P'),
+(3, 'Ayah', 'L'),
+(4, 'Ibu', 'P'),
+(5, 'Kakek dari Ayah', 'L'),
+(6, 'Kakek dari Ibu', 'L'),
+(7, 'Nenek dari Ayah', 'P'),
+(8, 'Nenek dari Ibu', 'P'),
+(9, 'Kakak (laki-laki)', 'L'),
+(10, 'Kakak (perempuan)', 'P'),
+(11, 'Adik (laki-laki)', 'L'),
+(12, 'Adik (perempuan)', 'P'),
+(13, 'Paman dari Ayah', 'L'),
+(14, 'Paman dari Ibu', 'L'),
+(15, 'Bibi dari Ayah', 'P'),
+(16, 'Bibi dari Ibu', 'P'),
+(17, 'Anak (laki-laki)', 'L'),
+(18, 'Anak (perempuan)', 'P');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ref_jenis_asuransi`
+--
+
+CREATE TABLE `ref_jenis_asuransi` (
+  `id_jenis_asuransi` smallint UNSIGNED NOT NULL,
+  `jenis_asuransi` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_produk` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `provider` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ref_jenjang_pendidikan`
+--
+
+CREATE TABLE `ref_jenjang_pendidikan` (
+  `id_jenjang_pendidikan` smallint UNSIGNED NOT NULL,
+  `jenjang_pendidikan` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sdm_keluarga`
+--
+
+CREATE TABLE `sdm_keluarga` (
+  `id_keluarga` smallint UNSIGNED NOT NULL,
+  `id_sdm` smallint UNSIGNED NOT NULL,
+  `id_person` smallint UNSIGNED NOT NULL,
+  `id_hubungan_keluarga` smallint UNSIGNED NOT NULL,
+  `status_tanggungan` enum('Ya','Tidak') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Tidak' COMMENT 'apakah ditanggung dalam tunjangan keluarga',
+  `pekerjaan` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pendidikan_terakhir` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `penghasilan` decimal(12,0) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sdm_rekening`
+--
+
+CREATE TABLE `sdm_rekening` (
+  `id_rekening` smallint UNSIGNED NOT NULL,
+  `no_rekening` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bank` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_pemilik` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kode_bank` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cabang_bank` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rekening_utama` enum('y','n') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jenis_rekening` enum('Tabungan','Giro','Deposito') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Tabungan',
+  `status_aktif` enum('Aktif','Nonaktif','Ditutup') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Aktif',
+  `id_sdm` smallint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sdm_riwayat_pendidikan`
+--
+
+CREATE TABLE `sdm_riwayat_pendidikan` (
+  `id_riwayat_pendidikan` smallint UNSIGNED NOT NULL,
+  `id_sdm` smallint UNSIGNED NOT NULL,
+  `id_jenjang_pendidikan` smallint UNSIGNED NOT NULL,
+  `nama_sekolah` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `negara` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Indonesia',
+  `status_sekolah` enum('Negeri','Swasta','Luar Negeri') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `jurusan` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nomor_induk` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tahun_masuk` year DEFAULT NULL,
+  `tahun_lulus` year DEFAULT NULL,
+  `gelar_akademik` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bidang_studi` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ipk` decimal(3,2) UNSIGNED DEFAULT NULL,
+  `tanggal_lulus` date DEFAULT NULL,
+  `jumlah_semester` smallint UNSIGNED DEFAULT NULL,
+  `jumlah_sks` smallint UNSIGNED DEFAULT NULL,
+  `nomor_ijazah` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `judul_tugas_akhir` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sumber_biaya` enum('Pribadi','Beasiswa','Institusi','Pemerintah') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nama_pembimbing` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file_ijazah` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file_transkip` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sdm_struktural`
+--
+
+CREATE TABLE `sdm_struktural` (
+  `id_struktural` smallint UNSIGNED NOT NULL,
+  `id_sdm` smallint UNSIGNED NOT NULL,
+  `id_unit` smallint UNSIGNED NOT NULL,
+  `id_jabatan` smallint UNSIGNED NOT NULL,
+  `nomor_sk` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tanggal_sk` date NOT NULL,
+  `tanggal_masuk` date NOT NULL,
+  `masa_jabatan` smallint UNSIGNED DEFAULT NULL COMMENT 'masa jabatan dalam tahun',
+  `tanggal_keluar` date DEFAULT NULL,
+  `sk_pemberhentian` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `alasan_keluar` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `keterangan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `file_sk_masuk` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file_sk_keluar` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
 --
 -- Indexes for dumped tables
 --
@@ -90364,12 +90765,49 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
+-- Indexes for table `master_jabatan`
+--
+ALTER TABLE `master_jabatan`
+  ADD PRIMARY KEY (`id_jabatan`),
+  ADD KEY `master_jabatan_fk_1` (`id_unit`),
+  ADD KEY `master_jabatan_fk_2` (`id_eselon`),
+  ADD KEY `master_jabatan_fk_3` (`id_periode`);
+
+--
+-- Indexes for table `master_periode`
+--
+ALTER TABLE `master_periode`
+  ADD PRIMARY KEY (`id_periode`);
+
+--
+-- Indexes for table `master_unit`
+--
+ALTER TABLE `master_unit`
+  ADD PRIMARY KEY (`id_unit`) USING BTREE;
+
+--
 -- Indexes for table `person`
 --
 ALTER TABLE `person`
   ADD PRIMARY KEY (`id_person`) USING BTREE,
   ADD UNIQUE KEY `uuid_person` (`uuid_person`),
   ADD KEY `person_fk_1` (`id_desa`);
+
+--
+-- Indexes for table `person_asuransi`
+--
+ALTER TABLE `person_asuransi`
+  ADD PRIMARY KEY (`id_person_asuransi`) USING BTREE,
+  ADD KEY `person_asuransi_fk_1` (`id_person`),
+  ADD KEY `person_asuransi_fk_2` (`id_jenis_asuransi`),
+  ADD KEY `kartu_anggota` (`kartu_anggota`);
+
+--
+-- Indexes for table `person_sdm`
+--
+ALTER TABLE `person_sdm`
+  ADD PRIMARY KEY (`id_sdm`),
+  ADD KEY `fk_person_sdm_1` (`id_person`);
 
 --
 -- Indexes for table `ref_almt_desa`
@@ -90399,24 +90837,180 @@ ALTER TABLE `ref_almt_provinsi`
   ADD PRIMARY KEY (`id_provinsi`) USING BTREE;
 
 --
+-- Indexes for table `ref_eselon`
+--
+ALTER TABLE `ref_eselon`
+  ADD PRIMARY KEY (`id_eselon`) USING BTREE;
+
+--
+-- Indexes for table `ref_hubungan_keluarga`
+--
+ALTER TABLE `ref_hubungan_keluarga`
+  ADD PRIMARY KEY (`id_hubungan_keluarga`) USING BTREE;
+
+--
+-- Indexes for table `ref_jenis_asuransi`
+--
+ALTER TABLE `ref_jenis_asuransi`
+  ADD PRIMARY KEY (`id_jenis_asuransi`) USING BTREE;
+
+--
+-- Indexes for table `ref_jenjang_pendidikan`
+--
+ALTER TABLE `ref_jenjang_pendidikan`
+  ADD PRIMARY KEY (`id_jenjang_pendidikan`);
+
+--
+-- Indexes for table `sdm_keluarga`
+--
+ALTER TABLE `sdm_keluarga`
+  ADD PRIMARY KEY (`id_keluarga`),
+  ADD KEY `sdm_keluarga_fk_1` (`id_sdm`),
+  ADD KEY `sdm_keluarga_fk_2` (`id_hubungan_keluarga`),
+  ADD KEY `sdm_keluarga_fk_3` (`id_person`);
+
+--
+-- Indexes for table `sdm_rekening`
+--
+ALTER TABLE `sdm_rekening`
+  ADD PRIMARY KEY (`id_rekening`),
+  ADD KEY `sdm_rekening_fk_1` (`id_sdm`);
+
+--
+-- Indexes for table `sdm_riwayat_pendidikan`
+--
+ALTER TABLE `sdm_riwayat_pendidikan`
+  ADD PRIMARY KEY (`id_riwayat_pendidikan`),
+  ADD KEY `fk_sdm_riwayat_pendidikan_1` (`id_sdm`),
+  ADD KEY `fk_sdm_riwayat_pendidikan_2` (`id_jenjang_pendidikan`);
+
+--
+-- Indexes for table `sdm_struktural`
+--
+ALTER TABLE `sdm_struktural`
+  ADD PRIMARY KEY (`id_struktural`),
+  ADD KEY `sdm_struktural_fk_1` (`id_sdm`),
+  ADD KEY `sdm_struktural_fk_2` (`id_jabatan`),
+  ADD KEY `sdm_struktural_fk_6` (`id_unit`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `master_jabatan`
+--
+ALTER TABLE `master_jabatan`
+  MODIFY `id_jabatan` smallint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+
+--
+-- AUTO_INCREMENT for table `master_periode`
+--
+ALTER TABLE `master_periode`
+  MODIFY `id_periode` smallint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `master_unit`
+--
+ALTER TABLE `master_unit`
+  MODIFY `id_unit` smallint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-  MODIFY `id_person` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_person` smallint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `person_asuransi`
+--
+ALTER TABLE `person_asuransi`
+  MODIFY `id_person_asuransi` smallint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `person_sdm`
+--
+ALTER TABLE `person_sdm`
+  MODIFY `id_sdm` smallint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ref_eselon`
+--
+ALTER TABLE `ref_eselon`
+  MODIFY `id_eselon` tinyint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `ref_hubungan_keluarga`
+--
+ALTER TABLE `ref_hubungan_keluarga`
+  MODIFY `id_hubungan_keluarga` smallint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `ref_jenis_asuransi`
+--
+ALTER TABLE `ref_jenis_asuransi`
+  MODIFY `id_jenis_asuransi` smallint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ref_jenjang_pendidikan`
+--
+ALTER TABLE `ref_jenjang_pendidikan`
+  MODIFY `id_jenjang_pendidikan` smallint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sdm_keluarga`
+--
+ALTER TABLE `sdm_keluarga`
+  MODIFY `id_keluarga` smallint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sdm_rekening`
+--
+ALTER TABLE `sdm_rekening`
+  MODIFY `id_rekening` smallint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sdm_riwayat_pendidikan`
+--
+ALTER TABLE `sdm_riwayat_pendidikan`
+  MODIFY `id_riwayat_pendidikan` smallint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sdm_struktural`
+--
+ALTER TABLE `sdm_struktural`
+  MODIFY `id_struktural` smallint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `master_jabatan`
+--
+ALTER TABLE `master_jabatan`
+  ADD CONSTRAINT `master_jabatan_fk_1` FOREIGN KEY (`id_unit`) REFERENCES `master_unit` (`id_unit`),
+  ADD CONSTRAINT `master_jabatan_fk_2` FOREIGN KEY (`id_eselon`) REFERENCES `ref_eselon` (`id_eselon`),
+  ADD CONSTRAINT `master_jabatan_fk_3` FOREIGN KEY (`id_periode`) REFERENCES `master_periode` (`id_periode`);
+
+--
 -- Constraints for table `person`
 --
 ALTER TABLE `person`
   ADD CONSTRAINT `person_fk_1` FOREIGN KEY (`id_desa`) REFERENCES `ref_almt_desa` (`id_desa`);
+
+--
+-- Constraints for table `person_asuransi`
+--
+ALTER TABLE `person_asuransi`
+  ADD CONSTRAINT `person_asuransi_fk_1` FOREIGN KEY (`id_person`) REFERENCES `person` (`id_person`),
+  ADD CONSTRAINT `person_asuransi_fk_2` FOREIGN KEY (`id_jenis_asuransi`) REFERENCES `ref_jenis_asuransi` (`id_jenis_asuransi`);
+
+--
+-- Constraints for table `person_sdm`
+--
+ALTER TABLE `person_sdm`
+  ADD CONSTRAINT `fk_person_sdm_1` FOREIGN KEY (`id_person`) REFERENCES `person` (`id_person`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `ref_almt_desa`
@@ -90435,6 +91029,35 @@ ALTER TABLE `ref_almt_kabupaten`
 --
 ALTER TABLE `ref_almt_kecamatan`
   ADD CONSTRAINT `ref_almt_kecamatan_fk_1` FOREIGN KEY (`id_kabupaten`) REFERENCES `ref_almt_kabupaten` (`id_kabupaten`);
+
+--
+-- Constraints for table `sdm_keluarga`
+--
+ALTER TABLE `sdm_keluarga`
+  ADD CONSTRAINT `sdm_keluarga_fk_1` FOREIGN KEY (`id_sdm`) REFERENCES `person_sdm` (`id_sdm`),
+  ADD CONSTRAINT `sdm_keluarga_fk_2` FOREIGN KEY (`id_hubungan_keluarga`) REFERENCES `ref_hubungan_keluarga` (`id_hubungan_keluarga`),
+  ADD CONSTRAINT `sdm_keluarga_fk_3` FOREIGN KEY (`id_person`) REFERENCES `person` (`id_person`);
+
+--
+-- Constraints for table `sdm_rekening`
+--
+ALTER TABLE `sdm_rekening`
+  ADD CONSTRAINT `sdm_rekening_fk_1` FOREIGN KEY (`id_sdm`) REFERENCES `person_sdm` (`id_sdm`);
+
+--
+-- Constraints for table `sdm_riwayat_pendidikan`
+--
+ALTER TABLE `sdm_riwayat_pendidikan`
+  ADD CONSTRAINT `fk_sdm_riwayat_pendidikan_1` FOREIGN KEY (`id_sdm`) REFERENCES `person_sdm` (`id_sdm`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `fk_sdm_riwayat_pendidikan_2` FOREIGN KEY (`id_jenjang_pendidikan`) REFERENCES `ref_jenjang_pendidikan` (`id_jenjang_pendidikan`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `sdm_struktural`
+--
+ALTER TABLE `sdm_struktural`
+  ADD CONSTRAINT `sdm_struktural_fk_1` FOREIGN KEY (`id_sdm`) REFERENCES `person_sdm` (`id_sdm`),
+  ADD CONSTRAINT `sdm_struktural_fk_2` FOREIGN KEY (`id_jabatan`) REFERENCES `master_jabatan` (`id_jabatan`),
+  ADD CONSTRAINT `sdm_struktural_fk_3` FOREIGN KEY (`id_unit`) REFERENCES `master_unit` (`id_unit`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
