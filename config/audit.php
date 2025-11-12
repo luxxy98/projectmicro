@@ -96,7 +96,7 @@ return [
     'drivers' => [
         'database' => [
             'table' => 'audits',
-            'connection' => 'log',
+            'connection' => 'mysql',
         ],
     ],
 
