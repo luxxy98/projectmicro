@@ -123,4 +123,10 @@ final readonly class PersonService
             ->where('person.uuid_person', $uuid)
             ->first();
     }
+    public function delete(\App\Models\Person\Person $person): void
+    {
+        // Jika kamu ingin Soft Delete, aktifkan trait SoftDeletes di model Person,
+        // lalu di sini tetap cukup panggil ->delete()
+        $person->delete();
+    }
 }

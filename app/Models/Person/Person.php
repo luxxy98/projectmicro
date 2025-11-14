@@ -14,6 +14,7 @@ final class Person extends Model implements Auditable
 {
     use AuditableTrait;
     use HasFactory;
+    use SoftDeletes;
     use SkipsEmptyAudit {
         SkipsEmptyAudit::transformAudit insteadof AuditableTrait;
     }
